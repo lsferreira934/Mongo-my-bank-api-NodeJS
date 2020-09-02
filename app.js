@@ -24,7 +24,8 @@ const app = expres();
 app.use(expres.json());
 app.use(accountRouter);
 
-const PORT = process.env.PORT_LOCAL || 8000;
+const PORT = process.env.PORT || 8000;
+
 app.listen(PORT, async () => {
   try {
     console.log(`API Iniciada na Porta: ${PORT}`);
