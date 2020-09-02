@@ -3,6 +3,8 @@ import { accountModel } from '../models/accountModel.js'; // importação do mod
 import cors from 'cors';
 const app = express();
 
+app.set('view engine', 'pug');
+
 app.use((req, res, next) => {
   res.header('acess-Control-Allow-Origin', '*');
   app.use(cors());
@@ -10,19 +12,21 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.send(`<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Leandro é lindo!</h1>
-  </body>
-  </html>`);
+  res.sendFile('index.html', { root: _dirname });
 });
 
+//------------------------------------------------------------------------------
+//
+app.get('/allacc', async (req, res) => {
+  try {
+    const account = await accountModel.find();
+    res.send(account);
+  } catch (err) {
+    res.status(500).send(` ${err}`);
+  }
+});
+
+//------------------------------------------------------------------------------
 // 4 ok
 app.put('/deposito/:ag/:cc/:vl', async (req, res) => {
   try {
