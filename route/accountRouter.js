@@ -1,7 +1,14 @@
 import express from 'express';
 import { accountModel } from '../models/accountModel.js'; // importação do modelo schema
-
+import cors from 'cors';
 const app = express();
+
+app.use((req, res, next) => {
+  console.log('acesso o middleware!');
+  res.header('acess-Control-Allow-Origin', '*');
+  app.use(cors());
+  next();
+});
 
 // 4 ok
 app.put('/deposito/:ag/:cc/:vl', async (req, res) => {
