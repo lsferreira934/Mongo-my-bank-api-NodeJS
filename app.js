@@ -24,7 +24,7 @@ const app = expres();
 app.use(expres.json());
 app.use(accountRouter);
 
-app.listen(process.env.PORT_LOCAL, async () => {
+app.listen(process.env.PORT_LOCAL || 8000, async () => {
   try {
     console.log('API Iniciada');
   } catch (err) {
