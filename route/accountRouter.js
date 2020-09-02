@@ -4,10 +4,13 @@ import cors from 'cors';
 const app = express();
 
 app.use((req, res, next) => {
-  console.log('acesso o middleware!');
   res.header('acess-Control-Allow-Origin', '*');
   app.use(cors());
   next();
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 // 4 ok
