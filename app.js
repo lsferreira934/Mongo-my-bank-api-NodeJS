@@ -2,14 +2,15 @@ import expres from 'express';
 import { accountRouter } from './route/accountRouter.js';
 import mongoose from 'mongoose';
 
-const app = expres();
-
 async function conectMongo() {
   try {
-    await mongoose.connect(process.env.MONGODB_KEY, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(
+      `mongodb+srv://${process.env.USER_MONGO}:${process.env.PWD_MONGO}@cluster0.m3izc.mongodb.net/${process.env.DB_MONGO}?retryWrites=true&w=majority`,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
 
     console.log(`Banco de dados: Conectado!`);
   } catch (err) {
@@ -19,7 +20,7 @@ async function conectMongo() {
 }
 
 conectMongo();
-
+const app = expres();
 app.use(expres.json());
 app.use(accountRouter);
 

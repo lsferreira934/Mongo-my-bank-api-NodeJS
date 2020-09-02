@@ -213,7 +213,6 @@ app.get('/media/:ag', async (req, res) => {
     const account = await accountModel.find({
       agencia: ag,
     });
-    console.log(account);
 
     if (!account) {
       throw new Error('AGÊNCIA INVÁLIDA!');
@@ -255,7 +254,7 @@ app.get('/clientemaior/:qt', async (req, res) => {
       .find({}, { _id: 0, agencia: 1, conta: 1, balance: 1 })
       .sort({ balance: -1, name: 1 })
       .limit(qt);
-    console.log(account);
+
     res.send(account);
   } catch (err) {
     res.status(500).send(` ${err}`);
@@ -271,7 +270,7 @@ app.get('/clientemaior/:qt', async (req, res) => {
       .find({}, { _id: 0, agencia: 1, conta: 1, balance: 1 })
       .sort({ balance: -1, name: 1 })
       .limit(qt);
-    console.log(account);
+
     res.send(account);
   } catch (err) {
     res.status(500).send(` ${err}`);
