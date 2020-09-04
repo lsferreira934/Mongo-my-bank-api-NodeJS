@@ -5,12 +5,15 @@ const app = express();
 
 app.set('view engine', 'pug');
 
-//cors pegando o endereço do front para conexão
-app.use(
-  cors({
-    origin: '*',
-  })
-);
+app.use((req, res, next) => {
+  //cors pegando o endereço do front para conexão
+  app.use(
+    cors({
+      origin: '*',
+    })
+  );
+  next();
+});
 
 //------------------------------------------------------------------------------
 //
