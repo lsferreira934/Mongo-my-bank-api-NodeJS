@@ -12,7 +12,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: _dirname });
+  res.send(`<h1> API Iniciada <h1/>`);
 });
 
 //------------------------------------------------------------------------------
