@@ -11,6 +11,9 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req, res) => {
+  res.send('API em execucao');
+});
 //------------------------------------------------------------------------------
 //
 app.get('/allacc', async (req, res) => {
